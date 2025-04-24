@@ -5,6 +5,11 @@
 
 ---
 
+<img width="1112" alt="AI-Safety-Demo" src="https://github.com/user-attachments/assets/d5dc9d14-a58b-404f-b8fb-c8468a0e87bb" />
+<img width="1033" alt="AI-Safety-Demo-Threat" src="https://github.com/user-attachments/assets/c808bdfb-d630-41aa-88ec-467f29796ebc" />
+<img width="914" alt="AI-Safety-Demo-Bias" src="https://github.com/user-attachments/assets/403f2e41-de2b-4595-aa3e-92f86a21a6e9" />
+<img width="974" alt="AI-Safety-Demo-Bias-Alternative" src="https://github.com/user-attachments/assets/3e83f957-131f-43a5-9540-9d0289e86929" />
+
 ## 🧠 Overview
 
 **AI systems are only as safe as their guardrails.**  
