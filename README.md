@@ -116,7 +116,7 @@ This project is open to:
 - Policy analysts and ethicists
 - UX/UI feedback from security-focused developers
 
-DM [@rodneyg](https://twitter.com/rg2official).
+DM [@rg2official](https://twitter.com/rg2official).
 
 ---
 
