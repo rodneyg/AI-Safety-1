@@ -116,7 +116,7 @@ This project is open to:
 - Policy analysts and ethicists
 - UX/UI feedback from security-focused developers
 
-DM [@rodneyg](https://twitter.com/rodneyg) or visit [SafeLab](https://your-safelab-link.com).
+DM [@rodneyg](https://twitter.com/rg2official).
 
 ---
 
