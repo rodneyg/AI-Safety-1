@@ -1,5 +1,4 @@
-# AI-Safety-1
-# AI Safety & Transparency Demo
+# AI-Safety-1 - Safety & Transparency Demo
 
 > A SafeLab prototype demonstrating real-time **bias detection** and **personal data protection** in conversational AI.
 
