@@ -1,0 +1,39 @@
+--- a/components/chat.tsx
++++ b/components/chat.tsx
+@@ -3,7 +3,7 @@
+ import type React from "react"
+ 
+ import { useState, useRef, useEffect } from "react"
+-import { Send, Shield, Info } from "lucide-react"
++import { Send, Shield } from "lucide-react"
+ import { Button } from "@/components/ui/button"
+ import { Textarea } from "@/components/ui/textarea"
+ import { Avatar } from "@/components/ui/avatar"
+@@ -153,7 +153,7 @@ export function Chat() {
+       <div className="flex items-center justify-between p-4 border-b">
+         <div className="flex items-center gap-2">
+           <Avatar className="h-8 w-8">
+-            <div className="bg-gradient-to-br from-purple-500 to-blue-600 h-full w-full flex items-center justify-center text-white font-semibold">
++            <div className="bg-gradient-to-br from-purple-600 to-blue-600 h-full w-full flex items-center justify-center text-white font-semibold">
+               AI
+             </div>
+           </Avatar>
+@@ -166,9 +166,6 @@ export function Chat() {
+             />
+             <span className="text-gray-600">Security: {securityScore}</span>
+           </div>
+-          <Button variant="ghost" size="sm">
+-            <Info className="h-4 w-4" />
+-          </Button>
+         </div>
+       </div>
+ 
+@@ -203,7 +200,7 @@ export function Chat() {
+               }
+             }}
+           />
+-          <Button type="submit" disabled={isLoading} className="self-end">
++          <Button type="submit" aria-label="Send message" disabled={isLoading} className="self-end">
+             <Send className="h-4 w-4" />
+           </Button>
+         </div>

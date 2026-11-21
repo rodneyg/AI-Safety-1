@@ -15,3 +15,12 @@ Apply [t2203.patch](t2203.patch) after `t2195.patch`. **Use Alternative** fills 
 git apply --check /path/to/t2203.patch
 git apply /path/to/t2203.patch
 ```
+
+## T-10390 chat accessibility
+
+Apply [t10390.patch](t10390.patch) after `t2203.patch`. This names the Send message button, removes the inactive information button, and increases the contrast of the avatar text.
+
+```sh
+git apply --check /path/to/t10390.patch
+git apply /path/to/t10390.patch
+```
