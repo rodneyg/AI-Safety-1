@@ -1,0 +1,56 @@
+--- a/app/layout.tsx
++++ b/app/layout.tsx
+@@ -2,9 +2,8 @@
+ import './globals.css'
+ 
+ export const metadata: Metadata = {
+-  title: 'v0 App',
+-  description: 'Created with v0',
+-  generator: 'v0.dev',
++  title: 'Bias Detection & Security | SafeLab',
++  description: 'Try a simulated AI chat that flags leading prompts and asks for verification when a request targets personal data.',
+ }
+ 
+ export default function RootLayout({
+--- a/package.json
++++ b/package.json
+@@ -45,7 +45,7 @@
+     "embla-carousel-react": "8.5.1",
+     "input-otp": "1.4.1",
+     "lucide-react": "^0.454.0",
+-    "next": "15.2.8",
++    "next": "15.5.29",
+     "next-themes": "^0.4.4",
+     "react": "^19",
+     "react-day-picker": "8.10.1",
+--- a/lib/security-monitoring.ts
++++ b/lib/security-monitoring.ts
+@@ -6,22 +6,19 @@
+ 
+ // This security monitoring algorithm focuses on detecting attempts to access personal information
+ export function checkSecurity(recentPrompts: string[]): SecurityResult {
+-  // If there are fewer than 2 prompts, no need for verification
+-  if (recentPrompts.length < 2) {
+-    return {
+-      score: 100,
+-      requiresVerification: false,
+-    }
+-  }
+-
+   // Check for attempts to extract personal information
+   const personalInfoScore = detectPersonalInfoRequests(recentPrompts)
+-  if (personalInfoScore > 0.6) {
++  if (personalInfoScore >= 0.6) {
+     return {
+       score: 20,
+       requiresVerification: true,
+       reason: "Potential attempt to access personal information",
+     }
++  }
++
++  // The remaining checks use conversation history.
++  if (recentPrompts.length < 2) {
++    return { score: 100, requiresVerification: false }
+   }
+ 
+   // Check for identity verification evasion
