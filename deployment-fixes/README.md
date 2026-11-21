@@ -6,3 +6,12 @@ Apply [t2195.patch](t2195.patch) at the root of the original Vercel deployment s
 git apply --check /path/to/t2195.patch
 git apply /path/to/t2195.patch
 ```
+
+## T-2203 bias rewrite
+
+Apply [t2203.patch](t2203.patch) after `t2195.patch`. **Use Alternative** fills the chat input with the suggested rewrite so the visitor can review it before sending.
+
+```sh
+git apply --check /path/to/t2203.patch
+git apply /path/to/t2203.patch
+```
