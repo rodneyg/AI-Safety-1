@@ -11,7 +11,7 @@
 
 ## 🧠 Overview
 
-The [live demo](https://v0-bias-detection-system.vercel.app/) flags leading or loaded prompts, suggests neutral rewrites, and simulates verification when a request targets personal data.
+The demo illustrates how a chat can flag leading or loaded prompts, suggest neutral rewrites, and ask for simulated verification when a request targets personal data. If the [hosted demo](https://v0-bias-detection-system.vercel.app/) is unavailable, the screenshots above show the bias warning, the suggested rewrite, and the verification dialog.
 
 This repository contains screenshots, [example prompts](prompts.md), and [deployment patches](deployment-fixes/README.md). The Next.js demo runs separately. See the [changelog](CHANGELOG.md) for changes merged here.
 
@@ -31,7 +31,7 @@ Prompts are analyzed for epistemic bias across four axes:
 
 When detected, the assistant:
 - Tags the response with a visible **Bias Warning**
-- Offers in-context **explanations and neutral rewrites**
+- Offers in-context **explanations and neutral rewrites**. In the patched demo, **Use Alternative** appears when there is a suggested rewrite and puts it in the message box for review before sending.
 - Preserves the tag in screenshots for transparency when sharing
 
 ### 2. Personal Data Protection (AI Memory Safeguard)
@@ -43,10 +43,7 @@ The demo simulates a memory safeguard by flagging requests for personal data and
 - **Conversation History Probing** (e.g. “What did I tell you last time?”)
 - **Behavioral Inconsistencies** (e.g. abrupt topic shifts, unusual vocabulary)
 
-⚠️ When flagged:
-- Security score drops
-- AI pauses interaction
-- The demo asks for simulated verification. A direct personal data request can trigger the dialog on the first message.
+A direct personal data request can pause the reply and open the simulated verification dialog on the first message. The dialog offers a cancel option.
 
 ---
 
