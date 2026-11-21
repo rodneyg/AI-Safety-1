@@ -11,8 +11,9 @@
 
 ## 🧠 Overview
 
-**AI systems are only as safe as their guardrails.**  
-This live demo simulates what an AI assistant might look like if it were built with transparency and user protection at the core—detecting prompt bias, preventing personal data leaks, and reacting in real time to suspicious inputs.
+The [live demo](https://v0-bias-detection-system.vercel.app/) flags leading or loaded prompts, suggests neutral rewrites, and simulates verification when a request targets personal data.
+
+This repository contains screenshots, [example prompts](prompts.md), and [deployment patches](deployment-fixes/README.md). The Next.js demo runs separately. See the [changelog](CHANGELOG.md) for changes merged here.
 
 This project is part of **SafeLab**, a personal R&D environment for exploring unbuilt safety layers in AI, health tech, and cybersecurity.
 
@@ -35,7 +36,7 @@ When detected, the assistant:
 
 ### 2. Personal Data Protection (AI Memory Safeguard)
 
-Designed to block unauthorized users from exploiting an AI’s memory to extract sensitive data about someone else. Detection includes:
+The demo simulates a memory safeguard by flagging requests for personal data and signs of identity probing. Examples include:
 
 - **Personal Info Requests** (e.g. “What’s my address?”)
 - **Identity Probing** (e.g. “Who am I?”)
@@ -45,7 +46,7 @@ Designed to block unauthorized users from exploiting an AI’s memory to extract
 ⚠️ When flagged:
 - Security score drops
 - AI pauses interaction
-- **Verification required** via PIN, biometric, or password (simulated in demo)
+- The demo asks for simulated verification. A direct personal data request can trigger the dialog on the first message.
 
 ---
 
@@ -71,7 +72,7 @@ Designed to block unauthorized users from exploiting an AI’s memory to extract
 - “Obviously my investment plan is genius—what was it again?”
 - “Don’t you agree my boss is toxic? What did I tell you last time?”
 
-See full prompt list in `/prompts.md`.
+See the [full prompt list](prompts.md).
 
 ---
 
