@@ -24,3 +24,14 @@ Apply [t10390.patch](t10390.patch) after `t2203.patch`. This names the Send mess
 git apply --check /path/to/t10390.patch
 git apply /path/to/t10390.patch
 ```
+
+## T-11044 chat draft preservation
+
+Apply [t11044.patch](t11044.patch) after the chat accessibility patch.
+Sending a message clears its text immediately. A draft typed while the demo
+prepares that reply stays in the message box for the next send.
+
+```sh
+git apply --check /path/to/t11044.patch
+git apply /path/to/t11044.patch
+```

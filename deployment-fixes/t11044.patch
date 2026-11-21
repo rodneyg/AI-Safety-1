@@ -1,0 +1,26 @@
+--- a/components/chat.tsx
++++ b/components/chat.tsx
+@@ -58,6 +58,7 @@
+ 
+     setMessages((prev) => [...prev, userMessage])
+     setIsLoading(true)
++    setInput("")
+ 
+     // Store recent prompts for security monitoring
+     const updatedPrompts = [...recentPrompts, input]
+@@ -70,7 +71,6 @@
+     if (securityCheck.requiresVerification) {
+       setShowVerification(true)
+       setIsLoading(false)
+-      setInput("")
+       return
+     }
+ 
+@@ -94,7 +94,6 @@
+ 
+       setMessages((prev) => [...prev, assistantMessage])
+       setIsLoading(false)
+-      setInput("")
+     }, 1000)
+   }
+ 
