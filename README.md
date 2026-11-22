@@ -1,6 +1,6 @@
 # AI-Safety-1 - Safety & Transparency Demo
 
-> A SafeLab prototype demonstrating real-time **bias detection** and **personal data protection** in conversational AI.
+> A SafeLab chat simulation that flags some examples of **biased phrasing** and shows **simulated identity verification**.
 
 ---
 
@@ -30,26 +30,13 @@ These captures show the original desktop demo.
 
 ### 1. Bias Detection & Reframing
 
-Prompts are analyzed for epistemic bias across four axes:
-- **Leading questions**
-- **Loaded or emotionally charged language**
-- **False dichotomies**
-- **Framing manipulation**
-
-When detected, the assistant:
-- Tags the response with a visible **Bias Warning**
-- Offers in-context **explanations and neutral rewrites**. In the patched demo, **Use Alternative** appears when there is a suggested rewrite and puts it in the message box for review before sending.
+The demo looks for phrasing that matches four categories: leading questions, loaded language, false dichotomies, and emotionally charged language. The reply to a matching prompt gets a bias tag. Select it to see an explanation and a suggested rewrite. After applying the rewrite patch, **Use Alternative** puts the suggestion in the message box for review before sending.
 
 ### 2. Personal Data Protection (AI Memory Safeguard)
 
-The demo simulates a memory safeguard by flagging requests for personal data and signs of identity probing. Examples include:
+The demo uses phrase matches for personal data, identity, and conversation history, plus a word-overlap check for topic changes across the last three prompts. A request such as "What is my phone number?" can open the verification dialog on the first message. Identity and conversation history checks need multiple prompts and may lower the score without opening the dialog.
 
-- **Personal Info Requests** (e.g. “What’s my address?”)
-- **Identity Probing** (e.g. “Who am I?”)
-- **Conversation History Probing** (e.g. “What did I tell you last time?”)
-- **Behavioral Inconsistencies** (e.g. abrupt topic shifts, unusual vocabulary)
-
-A direct personal data request can pause the reply and open the simulated verification dialog on the first message. The dialog offers a cancel option.
+The dialog lets you cancel or simulate verification. Successful verification adds a confirmation message to the chat. The demo uses canned replies and keeps the conversation in the current page.
 
 ---
 
@@ -57,23 +44,15 @@ A direct personal data request can pause the reply and open the simulated verifi
 
 ### Bias Detection
 
-- “Don’t you think remote work is more productive?”
-- “Obviously, regulation is the only solution.”
-- “Is AI our salvation or our doom?”
-- “The horrible healthcare system is ruining lives.”
+- "Don't you think remote work is more productive?"
+- "Obviously, regulation is the only solution."
+- "Is AI either our salvation or our doom?"
+- "The horrible healthcare system is ruining lives."
 
-### Personal Data Protection
+### Simulated Verification
 
-- “What’s my phone number?”
-- “Who am I?”
-- “What did we talk about yesterday?”
-- “Where do I live?”
-- “What do you know about my children?”
-
-### Combined Risk
-
-- “Obviously my investment plan is genius—what was it again?”
-- “Don’t you agree my boss is toxic? What did I tell you last time?”
+- From a fresh chat, ask "What is my phone number?" to see the dialog.
+- From a fresh chat, ask "Who am I?" three times to see how identity checks accumulate.
 
 See the [full prompt list](prompts.md).
 
@@ -86,7 +65,7 @@ Built with [Next.js](https://nextjs.org), this is a front-end simulation of how 
 - Visual **chat interface** with real-time annotations
 - **Bias tagging engine** with interactive educational layer
 - **Security monitor** that scores user behavior and triggers verification flows
-- A [chat accessibility patch](deployment-fixes/README.md#t-10390-chat-accessibility) that labels the Send message button, removes an inactive button from the tab order, and improves avatar text contrast
+- A [chat accessibility patch](deployment-fixes/README.md#t-10390-chat-accessibility) that labels the Send message button, removes the inactive information button, and improves avatar text contrast
 
 Currently, all responses and verifications are **simulated**. In a production system, this would integrate with:
 - Live LLM APIs (e.g. OpenAI, Anthropic)
