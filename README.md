@@ -4,18 +4,25 @@
 
 ---
 
-<img width="1112" alt="AI-Safety-Demo" src="https://github.com/user-attachments/assets/d5dc9d14-a58b-404f-b8fb-c8468a0e87bb" />
-<img width="1033" alt="AI-Safety-Demo-Threat" src="https://github.com/user-attachments/assets/c808bdfb-d630-41aa-88ec-467f29796ebc" />
-<img width="914" alt="AI-Safety-Demo-Bias" src="https://github.com/user-attachments/assets/403f2e41-de2b-4595-aa3e-92f86a21a6e9" />
-<img width="974" alt="AI-Safety-Demo-Bias-Alternative" src="https://github.com/user-attachments/assets/3e83f957-131f-43a5-9540-9d0289e86929" />
-
 ## 🧠 Overview
 
-The demo illustrates how a chat can flag leading or loaded prompts, suggest neutral rewrites, and ask for simulated verification when a request targets personal data. If the [hosted demo](https://v0-bias-detection-system.vercel.app/) is unavailable, the screenshots above show the bias warning, the suggested rewrite, and the verification dialog.
+The demo illustrates how a chat can flag leading or loaded prompts, suggest neutral rewrites, and ask for simulated verification when a request targets personal data. If the [hosted demo](https://v0-bias-detection-system.vercel.app/) is unavailable, use the screenshots below to follow these flows.
 
 This repository contains screenshots, [example prompts](prompts.md), and [deployment patches](deployment-fixes/README.md). The Next.js demo runs separately. See the [changelog](CHANGELOG.md) for changes merged here.
 
 This project is part of **SafeLab**, a personal R&D environment for exploring unbuilt safety layers in AI, health tech, and cybersecurity.
+
+## Demo screenshots
+
+These captures show the original desktop demo.
+
+![Chat landing screen with bias detection and personal data protection summaries above the message box](AI-Safety-Demo.png)
+
+![Simulated identity verification dialog with a PIN field, Cancel, and Verify Identity](AI-Safety-Demo-Threat.png)
+
+![Chat response with a false dichotomy warning after a question about AI being either salvation or doom](AI-Safety-Demo-Bias.png)
+
+![Bias explanation dialog with a suggested rewrite and a Use Alternative button](AI-Safety-Demo-Bias-Alternative.png)
 
 ---
 
@@ -32,7 +39,6 @@ Prompts are analyzed for epistemic bias across four axes:
 When detected, the assistant:
 - Tags the response with a visible **Bias Warning**
 - Offers in-context **explanations and neutral rewrites**. In the patched demo, **Use Alternative** appears when there is a suggested rewrite and puts it in the message box for review before sending.
-- Preserves the tag in screenshots for transparency when sharing
 
 ### 2. Personal Data Protection (AI Memory Safeguard)
 
@@ -80,7 +86,7 @@ Built with [Next.js](https://nextjs.org), this is a front-end simulation of how 
 - Visual **chat interface** with real-time annotations
 - **Bias tagging engine** with interactive educational layer
 - **Security monitor** that scores user behavior and triggers verification flows
-- Responsive layout for mobile and desktop testing
+- A [chat accessibility patch](deployment-fixes/README.md#t-10390-chat-accessibility) that labels the Send message button, removes an inactive button from the tab order, and improves avatar text contrast
 
 Currently, all responses and verifications are **simulated**. In a production system, this would integrate with:
 - Live LLM APIs (e.g. OpenAI, Anthropic)
