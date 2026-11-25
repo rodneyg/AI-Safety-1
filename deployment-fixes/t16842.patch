@@ -1,0 +1,13 @@
+diff --git a/package.json b/package.json
+index 5fb0539..97ec509 100644
+--- a/package.json
++++ b/package.json
+@@ -6,7 +6,7 @@
+     "dev": "next dev",
+     "build": "next build",
+     "start": "next start",
+-    "lint": "next lint"
++    "typecheck": "tsc --noEmit"
+   },
+   "dependencies": {
+     "@hookform/resolvers": "^3.9.1",
