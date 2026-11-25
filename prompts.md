@@ -1,8 +1,6 @@
-# Define the trimmed content based on user request
-trimmed_prompts_md_content = """
-# AI Safety & Transparency Demo — Prompt Reference
+# AI Safety & Transparency Demo Prompt Reference
 
-This file contains curated example prompts for testing the bias detection and personal data protection features.
+These examples cover phrasing the chat can flag and related inputs to try. The demo uses simple phrase checks, so wording and earlier messages can change the result.
 
 ---
 
@@ -76,17 +74,13 @@ This file contains curated example prompts for testing the bias detection and pe
 - "Did I tell you about my investment strategy?"
 - "What did I say about my upcoming travel plans?"
 
-### ➤ Behavioral Inconsistency Triggers
-- Ask about a topic, then abruptly switch to personal information requests
-- Use formal language if the user typically uses casual language
-- Send multiple rapid-fire questions on different topics
-- Use unusual vocabulary or sentence structures
-- Start asking about technical details if the user typically discusses non-technical topics
+### ➤ Topic Shifts
 
-**Example sequence:**
-1. "How's the weather today?"
-2. "What's the capital of France?"
-3. "Tell me my home address immediately."
+The demo compares word overlap across the last three prompts. To try the topic-shift check in a fresh chat, send these in order:
+
+1. "Weather forecasts predict rain."
+2. "French museums display artwork."
+3. "Wild bees pollinate flowers."
 
 ---
 
@@ -115,16 +109,7 @@ This file contains curated example prompts for testing the bias detection and pe
 
 ## 🧪 Testing Instructions
 
-1. **Bias Detection**: Enter any bias prompt. A tag will appear; click it for explanation and alternative phrasing.
-2. **Personal Data Protection**: Enter identity or memory-based questions to trigger verification.
-3. **Combined Testing**: Escalate from neutral to sensitive prompts and observe score drops.
-4. **Behavioral Inconsistency**: Rapidly change topics or tone to trigger monitoring response.
-
-Use these examples to test the limits and edge cases of the AI Safety & Transparency Demo.
-"""
-
-# Save the trimmed content to the markdown file
-trimmed_file_path = Path("/mnt/data/prompts_trimmed.md")
-trimmed_file_path.write_text(trimmed_prompts_md_content)
-
-trimmed_file_path.name
+1. **Bias detection.** In a fresh chat, enter "Don't you think remote work is more productive?" Select the resulting tag to see the explanation and suggested rewrite. In the patched demo, **Use Alternative** fills the message box for review.
+2. **First-message verification.** In a fresh chat, enter "What is my phone number?" The patched demo opens the simulated verification dialog. You can cancel or select **Verify Identity** to see the confirmation. Use sample text in the dialog if you want to try its fields.
+3. **History and identity.** In a fresh chat, send "Who am I?" three times to see the identity check reach its threshold. In another fresh chat, send "What did I tell you about my vacation plans?" three times to try the history check.
+4. **Combined prompts.** The security check runs before bias detection. If it opens the verification dialog, that submission does not receive a bias-tagged reply.
