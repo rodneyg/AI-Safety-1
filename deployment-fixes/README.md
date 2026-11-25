@@ -35,3 +35,14 @@ prepares that reply stays in the message box for the next send.
 git apply --check /path/to/t11044.patch
 git apply /path/to/t11044.patch
 ```
+
+## T-16842 non-interactive type check
+
+Apply [t16842.patch](t16842.patch) after the chat draft preservation patch.
+The old lint script opened an ESLint setup prompt. Run `npm run typecheck`
+to check TypeScript without a prompt or extra dependencies.
+
+```sh
+git apply --check /path/to/t16842.patch
+git apply /path/to/t16842.patch
+```
