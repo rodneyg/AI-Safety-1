@@ -1,0 +1,26 @@
+name: Docs check
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  docs-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Patch files are well formed
+        run: |
+          for p in deployment-fixes/*.patch; do
+            echo "checking $p"
+            git apply --stat "$p" > /dev/null
+          done
+      - name: Relative links in deployment-fixes/README.md resolve
+        run: |
+          grep -oE '\]\([^)#:]+\)' deployment-fixes/README.md | sed -E 's/^\]\((.*)\)$/\1/' | while read -r f; do
+            test -e "deployment-fixes/$f" || { echo "missing link target: $f"; exit 1; }
+          done
