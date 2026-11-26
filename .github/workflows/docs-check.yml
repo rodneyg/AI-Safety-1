@@ -19,7 +19,8 @@ jobs:
             echo "checking $p"
             git apply --stat "$p" > /dev/null
           done
-      - name: Relative links in deployment-fixes/README.md resolve
+      - name: Patch README contains relative links and their targets exist
+        shell: bash
         run: |
           grep -oE '\]\([^)#:]+\)' deployment-fixes/README.md | sed -E 's/^\]\((.*)\)$/\1/' | while read -r f; do
             test -e "deployment-fixes/$f" || { echo "missing link target: $f"; exit 1; }
