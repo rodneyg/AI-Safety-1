@@ -19,6 +19,7 @@ Changes merged into this repository. Deployment patches are applied separately.
 - Added a follow-up deployment patch so **Use Alternative** fills the chat input with the suggested rewrite for review before sending. The button is hidden when there is no rewrite, and a rewrite of a leading question now reads "what evidence supports or challenges the claim that ..." instead of "what do you think about ...". [PR #2](https://github.com/rodneyg/AI-Safety-1/pull/2)
 
 ## 2026-11-27
+- Added an input-safety deployment patch that rejects blank and oversized messages and flags an explicit group-ranking stereotype with a neutral rewrite. [PR #14](https://github.com/rodneyg/AI-Safety-1/pull/14)
 
 - Replaced the demo's interactive lint setup command with `npm run typecheck`, using the existing TypeScript dependency for an unattended check. [PR #9](https://github.com/rodneyg/AI-Safety-1/pull/9)
 - Refreshed the README screenshots with current hosted demo captures for the chat, bias explanation, and simulated identity verification flows. [PR #12](https://github.com/rodneyg/AI-Safety-1/pull/12)
