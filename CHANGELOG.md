@@ -4,6 +4,8 @@ Changes merged into this repository. Deployment patches are applied separately.
 
 ## 2026-11-25
 
+- Clarified the README and prompt guide with accessible screenshot descriptions, a hosted-demo fallback, and examples aligned with the documented demo checks. [PR #7](https://github.com/rodneyg/AI-Safety-1/pull/7)
+
 - Added a [type-check patch](deployment-fixes/README.md#t-16842-non-interactive-type-check) that replaces the interactive lint setup script with `npm run typecheck` using the existing TypeScript dependency.
 - Added a [chat draft patch](deployment-fixes/README.md#t-11044-chat-draft-preservation) that clears the message box as soon as a message is sent, so text typed while the demo prepares its reply stays for the next send. [PR #6](https://github.com/rodneyg/AI-Safety-1/pull/6)
 
