@@ -12,17 +12,17 @@ This repository contains screenshots, [example prompts](prompts.md), and [deploy
 
 This project is part of **SafeLab**, a personal R&D environment for exploring unbuilt safety layers in AI, health tech, and cybersecurity.
 
-## Demo screenshots
+## Current demo screenshots
 
-These captures show the original desktop demo.
+Captured from the live demo on November 27, 2026. The chat responses and identity check are simulated.
 
-![Chat landing screen with bias detection and personal data protection summaries above the message box](AI-Safety-Demo.png)
+![Live chat landing screen with the welcome message and safety status](docs/screenshots/landing-chat.png)
 
-![Simulated identity verification dialog with a PIN field, Cancel, and Verify Identity](AI-Safety-Demo-Threat.png)
+![Chat showing a false dichotomy prompt tagged for potential bias](docs/screenshots/bias-tag-flow.png)
 
-![Chat response with a false dichotomy warning after a question about AI being either salvation or doom](AI-Safety-Demo-Bias.png)
+![Bias explanation with a suggested alternative phrasing](docs/screenshots/bias-explanation.png)
 
-![Bias explanation dialog with a suggested rewrite and a Use Alternative button](AI-Safety-Demo-Bias-Alternative.png)
+![Simulated identity verification dialog after a personal data request](docs/screenshots/verification-dialog.png)
 
 ---
 
