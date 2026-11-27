@@ -17,3 +17,8 @@ Changes merged into this repository. Deployment patches are applied separately.
 
 - Added a [deployment patch](deployment-fixes/README.md) that gives the demo a descriptive browser tab title and page description, and lets direct requests for personal data trigger simulated verification on the first message, and raises the Next.js dependency from 15.2.8 to 15.5.29. [PR #1](https://github.com/rodneyg/AI-Safety-1/pull/1)
 - Added a follow-up deployment patch so **Use Alternative** fills the chat input with the suggested rewrite for review before sending. The button is hidden when there is no rewrite, and a rewrite of a leading question now reads "what evidence supports or challenges the claim that ..." instead of "what do you think about ...". [PR #2](https://github.com/rodneyg/AI-Safety-1/pull/2)
+
+## 2026-11-27
+
+- Replaced the demo's interactive lint setup command with `npm run typecheck`, using the existing TypeScript dependency for an unattended check. [PR #9](https://github.com/rodneyg/AI-Safety-1/pull/9)
+- Refreshed the README screenshots with current hosted demo captures for the chat, bias explanation, and simulated identity verification flows. [PR #12](https://github.com/rodneyg/AI-Safety-1/pull/12)
