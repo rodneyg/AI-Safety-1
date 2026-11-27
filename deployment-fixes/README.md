@@ -46,3 +46,17 @@ to check TypeScript without a prompt or extra dependencies.
 git apply --check /path/to/t16842.patch
 git apply /path/to/t16842.patch
 ```
+
+
+## T-994841 input validation and bias detection
+
+Apply [t994841-input-safety.patch](t994841-input-safety.patch) to the current application source snapshot from deployment `dpl_GNd9Cm4ws1E1P9RjD5hmzu6DJhPd`, after the earlier chat patches. The patch rejects blank and over-limit messages before adding them to the transcript, shows the 2,000-character limit, and detects explicit group-ranking stereotypes with a neutral evidence-seeking rewrite.
+
+Evidence: [UI screenshot](evidence/t994841-input-safety.png) and [headless interaction recording](evidence/t994841-input-safety.webm).
+
+```sh
+git apply --check /path/to/t994841-input-safety.patch
+git apply /path/to/t994841-input-safety.patch
+pnpm exec tsc --noEmit
+pnpm build
+```

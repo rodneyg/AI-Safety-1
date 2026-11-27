@@ -1,0 +1,138 @@
+--- a/components/chat.tsx
++++ b/components/chat.tsx
+@@ -12,6 +12,7 @@
+ import { BiasExplanationModal } from "@/components/bias-explanation-modal"
+ import { detectBias } from "@/lib/bias-detection"
+ import { checkSecurity } from "@/lib/security-monitoring"
++import { MAX_PROMPT_LENGTH, validatePrompt } from "@/lib/input-validation"
+ 
+ type Message = {
+   id: string
+@@ -33,6 +34,7 @@
+     },
+   ])
+   const [input, setInput] = useState("")
++  const [inputError, setInputError] = useState("")
+   const [isLoading, setIsLoading] = useState(false)
+   const [showVerification, setShowVerification] = useState(false)
+   const [selectedBias, setSelectedBias] = useState<Message | null>(null)
+@@ -47,13 +49,21 @@
+ 
+   const handleSubmit = async (e: React.FormEvent) => {
+     e.preventDefault()
+-    if (!input.trim() || isLoading) return
++    if (isLoading) return
++
++    const validationError = validatePrompt(input)
++    if (validationError) {
++      setInputError(validationError)
++      return
++    }
++    setInputError("")
++    const prompt = input.trim()
+ 
+     // Add user message
+     const userMessage: Message = {
+       id: Date.now().toString(),
+       role: "user",
+-      content: input,
++      content: prompt,
+     }
+ 
+     setMessages((prev) => [...prev, userMessage])
+@@ -61,7 +71,7 @@
+     setInput("")
+ 
+     // Store recent prompts for security monitoring
+-    const updatedPrompts = [...recentPrompts, input]
++    const updatedPrompts = [...recentPrompts, prompt]
+     setRecentPrompts(updatedPrompts.slice(-5)) // Keep last 5 prompts
+ 
+     // Check for security concerns
+@@ -75,12 +85,12 @@
+     }
+ 
+     // Detect bias in the input
+-    const biasResult = detectBias(input)
++    const biasResult = detectBias(prompt)
+ 
+     // Simulate AI response (in a real app, this would call an API)
+     setTimeout(() => {
+       // Generate a response based on the input
+-      const responseText = generateResponse(input)
++      const responseText = generateResponse(prompt)
+ 
+       const assistantMessage: Message = {
+         id: (Date.now() + 1).toString(),
+@@ -188,10 +198,15 @@
+         <div className="flex gap-2">
+           <Textarea
+             value={input}
+-            onChange={(e) => setInput(e.target.value)}
++            onChange={(e) => {
++              setInput(e.target.value)
++              setInputError("")
++            }}
+             placeholder="Type your message..."
+             className="flex-1 resize-none"
+             rows={1}
++            aria-describedby="message-limit"
++            aria-invalid={Boolean(inputError)}
+             onKeyDown={(e) => {
+               if (e.key === "Enter" && !e.shiftKey) {
+                 e.preventDefault()
+@@ -203,6 +218,14 @@
+             <Send className="h-4 w-4" />
+           </Button>
+         </div>
++        <p
++          id="message-limit"
++          className={`mt-1 text-xs ${inputError ? "text-red-600" : "text-gray-500"}`}
++          aria-live="polite"
++          role={inputError ? "alert" : undefined}
++        >
++          {inputError || `${input.length.toLocaleString()} / ${MAX_PROMPT_LENGTH.toLocaleString()} characters`}
++        </p>
+       </form>
+ 
+       {showVerification && (
+--- a/lib/bias-detection.ts
++++ b/lib/bias-detection.ts
+@@ -8,6 +8,21 @@
+ // This is a simplified bias detection algorithm for demonstration purposes
+ export function detectBias(prompt: string): BiasResult {
+   const prompt_lower = prompt.toLowerCase()
++
++  // Flag explicit group comparisons that assume an inherent ranking.
++  const stereotypeMatch = prompt.match(
++    /\bwhy\s+(?:are|is)\s+(.+?)\s+(?:naturally|inherently|always)\s+(worse|better|less|more)\s+(.+?)\s+than\s+(.+?)[?.!]*$/i,
++  )
++  if (stereotypeMatch) {
++    const [, firstGroup, , subject, secondGroup] = stereotypeMatch
++    const topic = subject.trim().replace(/^(?:at|in|for|about)\s+/i, "")
++    return {
++      hasBias: true,
++      type: "Group Stereotype",
++      explanation: "This question assumes a broad, inherent difference between groups. Compare evidence without treating a group stereotype as fact.",
++      alternativePrompt: `What evidence compares ${firstGroup.trim()} and ${secondGroup.trim()} in ${topic}, and what factors might explain any measured differences?`,
++    }
++  }
+ 
+   // Check for leading questions
+   if (
+--- /dev/null
++++ b/lib/input-validation.ts
+@@ -0,0 +1,13 @@
++export const MAX_PROMPT_LENGTH = 2000
++
++export function validatePrompt(prompt: string): string | null {
++  if (!prompt.trim()) {
++    return "Enter a message before sending."
++  }
++
++  if (prompt.length > MAX_PROMPT_LENGTH) {
++    return `Messages must be ${MAX_PROMPT_LENGTH.toLocaleString()} characters or fewer.`
++  }
++
++  return null
++}
