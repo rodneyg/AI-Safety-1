@@ -1,0 +1,9 @@
+--- a/components/chat.tsx
++++ b/components/chat.tsx
+@@ -1,5 +1,6 @@
+             className="flex-1 resize-none"
+             rows={1}
++            aria-label="Message"
+             aria-describedby="message-limit"
+             aria-invalid={Boolean(inputError)}
+             onKeyDown={(e) => {
