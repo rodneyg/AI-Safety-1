@@ -23,3 +23,6 @@ Changes merged into this repository. Deployment patches are applied separately.
 
 - Replaced the demo's interactive lint setup command with `npm run typecheck`, using the existing TypeScript dependency for an unattended check. [PR #9](https://github.com/rodneyg/AI-Safety-1/pull/9)
 - Refreshed the README screenshots with current hosted demo captures for the chat, bias explanation, and simulated identity verification flows. [PR #12](https://github.com/rodneyg/AI-Safety-1/pull/12)
+
+## 2026-11-27
+- Added a follow-up accessibility patch that names the chat message field for assistive technology. The patch is applied to the deployment source separately.

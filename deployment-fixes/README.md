@@ -60,3 +60,15 @@ git apply /path/to/t994841-input-safety.patch
 pnpm exec tsc --noEmit
 pnpm build
 ```
+
+## T-994841 accessible message label
+
+Apply [t994841-accessible-label.patch](t994841-accessible-label.patch) after
+`t994841-input-safety.patch`. It gives the message textarea a programmatic
+name so screen readers can identify the field. The visible design stays the
+same.
+
+```sh
+git apply --check /path/to/t994841-accessible-label.patch
+git apply /path/to/t994841-accessible-label.patch
+```
